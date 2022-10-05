@@ -10,7 +10,7 @@ int main(int argc, char **argv){
 
     mensaje = "UNITEC";
 
-    cout << "\t\t Hola Mundo\n \t\t Bienvenidos \n Arquitectura y programacion de Computadoras \b \n" << mensaje;
+    cout << "\t\t Hola Mundo\n \t\t Bienvenidos \n Arquitectura y programacion de Computadoras \a \n" << mensaje;
 
     cout << "Ingresa la edad de la persona 1 "<<endl;
     cin >> edad_persona_1;
