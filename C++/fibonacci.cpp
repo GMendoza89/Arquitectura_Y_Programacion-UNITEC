@@ -4,13 +4,8 @@
 int main(int argc, char **argv){
 
     long int elementoN;
-    long int elementoN_n;
-    long int elementoN_1 = 1;
-    long int elementoN_2 = 0;
-    std::ofstream outputFile;
-
     
-
+    std::ofstream outputFile;
     if(argc < 2){
          std::cout << "[-] ERROR  01 - Falta el numero de elementos a usar, ejemplo: \n";
          std::cout<<"\t\t " << argv[0] << " [Numero_de_Elementos]\n";
@@ -27,36 +22,50 @@ int main(int argc, char **argv){
         return -2;
     }
 
-    outputFile.open("fibonacci_longint.csv");
+    outputFile.open("fibonacci_unignedlongInt.csv");
 
     if(elementoN == 1){
-        std::cout << "El valor del elemento 1 de la serie correponde a: 0 \n";
-        outputFile << elementoN_2 << "\n";
+        // std::cout << "El valor del elemento 1 de la serie correponde a: 0 \n";
+        outputFile << "0" << "\n";
         outputFile.close();
         return 0;
 
     }else if(elementoN == 2){
-        std::cout << "El valor del elemento 2 de la serie correponde a: 1 \n";
-        outputFile << elementoN_2 << "\n";
-        outputFile << elementoN_1 << "\n";
+        // std::cout << "El valor del elemento 2 de la serie correponde a: 1 \n";
+        outputFile << "0" << "\n";
+        outputFile << "1" << "\n";
         outputFile.close();
         return 0;
     }
+    unsigned long int serieFibonacci[elementoN];
+    serieFibonacci[0] = 0;
+    serieFibonacci[1] = 1;
 
-    std::cout << elementoN_2 << " \n";
-    std::cout << elementoN_1 << " \n";
-    outputFile << elementoN_2 << "\n";
-    outputFile << elementoN_1 << "\n";
+    // std::cout << serieFibonacci[0] << " \n";
+    // std::cout << serieFibonacci[1] << " \n";
+    outputFile << serieFibonacci[0] << "\n";
+    outputFile << serieFibonacci[1] << "\n";
 
-    for( int i = 0; i < elementoN; i++){
-        elementoN_n = elementoN_1 + elementoN_2;
-        elementoN_2 = elementoN_1;
-        elementoN_1 = elementoN_n;
-        std::cout << elementoN_n << " \n";
-        outputFile << elementoN_n << "\n";
+    for( int index = 2; index < elementoN; index++){
+       serieFibonacci[index] = serieFibonacci[index - 1] + serieFibonacci[index -2];
+        outputFile << serieFibonacci[index] << "\n";
     }
+    
+    int index;
+    while(true){
 
-    std::cout << "El valor del elemento "<< elementoN << " de la serie correponde a:"<< elementoN_n << "\n";
+        std::cout << "Indica el valor de la serie a visualizar:   (presiona 0 para salir) ";
+        std::cin >> index;
+        if(index == 0){
+            break;
+        }
+        if(index >elementoN ){
+            std::cout << " ERROR [-] Ingresa un valor que este dentro del limite calculado \n";
+            continue;
+        }
+        std::cout << " El elemento de la serie " << index << " Corresponde al valor de: " << serieFibonacci[index - 1]<< "\n";
+
+    }
     
     outputFile.close();
     return 0;
